@@ -297,6 +297,73 @@ bool HelloWorld::init()
 
             if(ImGui::BeginTabItem("Particle Settings"))
             {
+                static float s_lifeTime = ps->getLife();
+                if(ImGui::SliderFloat("Lifetime", &s_lifeTime, 0.f, 10.0f))
+                {
+                    ps->setLife(s_lifeTime);
+                }
+
+                if(ImGui::IsItemHovered())
+                {
+                    ImGui::BeginTooltip();
+                    ImGui::Text("Fethiye Test");
+                    ImGui::EndTooltip();
+                }
+
+                static float s_lifeTimeVar = ps->getLifeVar();
+                if(ImGui::SliderFloat("Lifetime Variance", &s_lifeTimeVar, 0.f, 10.0f))
+                {
+                    ps->setLifeVar(s_lifeTimeVar);
+                }
+
+                static float s_startSize = ps->getStartSize();
+                if(ImGui::SliderFloat("Start Size", &s_startSize, 0.f, 512.0f))
+                {
+                    ps->setStartSize(s_startSize);
+                }
+
+                static float s_startSizeVar = ps->getStartSizeVar();
+                if(ImGui::SliderFloat("Start Size Variance", &s_startSizeVar, 0.f, 512.0f))
+                {
+                    ps->setStartSizeVar(s_startSizeVar);
+                }
+
+                static float s_endSize = ps->getEndSize();
+                if(ImGui::SliderFloat("End Size", &s_endSize, 0.f, 512.0f))
+                {
+                    ps->setEndSize(s_endSize);
+                }
+
+                static float s_endSizeVar = ps->getEndSizeVar();
+                if(ImGui::SliderFloat("End Size Variance", &s_endSizeVar, 0.f, 512.0f))
+                {
+                    ps->setEndSizeVar(s_endSizeVar);
+                }
+
+                static float s_startSpin = ps->getStartSpin();
+                if(ImGui::SliderFloat("Start Rotation", &s_startSpin, 0.f, 360.0f))
+                {
+                    ps->setStartSpin(s_startSpin);
+                }
+
+                static float s_startSpinVar = ps->getStartSpinVar();
+                if(ImGui::SliderFloat("Start Rotation Variance", &s_startSpinVar, 0.f, 360.0f))
+                {
+                    ps->setStartSpinVar(s_startSpinVar);
+                }
+
+                static float s_endSpin = ps->getEndSpin();
+                if(ImGui::SliderFloat("End Rotation", &s_endSpin, 0.f, 360.0f))
+                {
+                    ps->setEndSpin(s_endSpin);
+                }
+
+                static float s_endSpinVar = ps->getEndSpinVar();
+                if(ImGui::SliderFloat("End Rotation Variance", &s_endSpinVar, 0.f, 360.0f))
+                {
+                    ps->setEndSpinVar(s_endSpinVar);
+                }
+
                 ImGui::EndTabItem();
             }
 
