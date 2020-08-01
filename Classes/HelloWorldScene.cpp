@@ -164,16 +164,72 @@ bool HelloWorld::init()
         {
             if(ImGui::BeginTabItem("Emitter Settings"))
             {
+                static float s_duration = ps->getDuration();
+                if(ImGui::InputFloat("Duration", &s_duration, 0.01f, 1.0f))
+                {
+                    ps->setDuration(s_duration);
+                    ps->resetSystem();
+                }
+
+                static std::array<int, 2> sourcePosition{(int)ps->getPosVar().x, (int)ps->getPosVar().y};
+                if(ImGui::SliderInt2("Source Position Variance", sourcePosition.data(), 0, 2048))
+                {
+                    ps->setPosVar(Vec2(sourcePosition[0],sourcePosition[1]));
+                }
+
+                static int s_maximum_particles = ps->getTotalParticles();
+                if(ImGui::InputInt("Maximum Particles", &s_maximum_particles, 0, 2000))
+                {
+                    ps->setTotalParticles(s_maximum_particles);
+                }
+
+                static float s_emit_angle = ps->getAngle();
+                if(ImGui::SliderFloat("Emit Angle", &s_emit_angle, 0.f, 360.f))
+                {
+                    ps->setAngle(s_emit_angle);
+                }
+
+                static float s_emit_angle_variance = ps->getAngleVar();
+                if(ImGui::SliderFloat("Emit Angle Variance", &s_emit_angle_variance, 0.f, 360.f))
+                {
+                    ps->setAngleVar(s_emit_angle_variance);
+                }
+
+                static int current_type = (int)ps->getEmitterMode();
+                static constexpr std::array<const char*,2> types{"Gravity", "Radial"};
+                if(ImGui::Combo("Type", &current_type, types.data(),2))
+                {
+                    ps->setEmitterMode(static_cast<ParticleSystem::Mode >(current_type));
+                }
+
+                static std::array<float, 2> s_gravity{ps->getGravity().x, ps->getGravity().y};
+                if(ImGui::SliderFloat2("gravity", s_gravity.data(), -1000.f, 1000.f))
+                {
+                    ps->setGravity(Vec2{s_gravity.data()});
+                }
+
+
+                //ImGui::Text("speed %f", ps->getSpeed());
+//                ImGui::Text("speed var %f", ps->getSpeedVar());
+                ImGui::EndTabItem();
+            }
+            if(ImGui::BeginTabItem("Particle Settings"))
+            {
+                ImGui::EndTabItem();
+            }
+
+            if(ImGui::BeginTabItem("Color Settings"))
+            {
+                ImGui::EndTabItem();
+            }
+
+            if(ImGui::BeginTabItem("Texture Settings"))
+            {
                 ImGui::EndTabItem();
             }
             ImGui::EndTabBar();
         }
-        static std::array<float, 2> s_gravity{ps->getGravity().x, ps->getGravity().y};
-        if(ImGui::SliderFloat2("gravity", s_gravity.data(), -1000.f, 1000.f)) {
-            ps->setGravity(Vec2{s_gravity.data()});
-        }
-        ImGui::Text("speed %f", ps->getSpeed());
-        ImGui::Text("speed var %f", ps->getSpeedVar());
+
     }, "hello");
 
     return true;
