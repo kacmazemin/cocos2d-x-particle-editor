@@ -22,8 +22,13 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#include <cocos/base/firePngData.h>
+#include <array>
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "CCImGuiLayer.h"
+#include "CCIMGUI.h"
+#include "cocos/2d/CCParticleSystemQuad.h"
 
 USING_NS_CC;
 
@@ -37,6 +42,29 @@ static void problemLoading(const char* filename)
 {
     printf("Error while loading: %s\n", filename);
     printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
+}
+
+static Texture2D* getDefaultTexture()
+{
+    Texture2D* texture = nullptr;
+    Image* image = nullptr;
+    do
+    {
+        const std::string key = "/__firePngData";
+        texture = Director::getInstance()->getTextureCache()->getTextureForKey(key);
+        CC_BREAK_IF(texture != nullptr);
+
+        image = new (std::nothrow) Image();
+        CC_BREAK_IF(nullptr == image);
+        bool ret = image->initWithImageData(__firePngData, sizeof(__firePngData));
+        CC_BREAK_IF(!ret);
+
+        texture = Director::getInstance()->getTextureCache()->addImage(image, key);
+    } while (0);
+
+    CC_SAFE_RELEASE(image);
+
+    return texture;
 }
 
 // on "init" you need to initialize your instance
@@ -115,8 +143,42 @@ bool HelloWorld::init()
         // add the sprite as a child to this layer
         this->addChild(sprite, 0);
     }
+
+    std::string layerName = "ImGUILayer";
+    auto order = INT_MAX;
+    auto layer = ImGuiLayer::create();
+    addChild(layer, order, layerName);
+
+
+// add ui callbacks
+
+    auto ps = ParticleFireworks::create();
+
+    addChild(ps, 10);
+
+    CCIMGUI::getInstance()->addCallback([=](){
+        ImGui::Text("Texture path: %s", ps->getTexture()->getPath().c_str());
+        ImGui::Text("isFull %d", ps->isFull());
+
+        if(ImGui::BeginTabBar("#tab"))
+        {
+            if(ImGui::BeginTabItem("Emitter Settings"))
+            {
+                ImGui::EndTabItem();
+            }
+            ImGui::EndTabBar();
+        }
+        static std::array<float, 2> s_gravity{ps->getGravity().x, ps->getGravity().y};
+        if(ImGui::SliderFloat2("gravity", s_gravity.data(), -1000.f, 1000.f)) {
+            ps->setGravity(Vec2{s_gravity.data()});
+        }
+        ImGui::Text("speed %f", ps->getSpeed());
+        ImGui::Text("speed var %f", ps->getSpeedVar());
+    }, "hello");
+
     return true;
 }
+
 
 
 void HelloWorld::menuCloseCallback(Ref* pSender)

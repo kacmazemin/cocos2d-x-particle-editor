@@ -56,6 +56,20 @@
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
 		D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B0611A1803AB670077942B /* CoreMotion.framework */; };
+		E3C9203E42FFA487EB03619D /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C928E2557AD12AFE0EC31D /* imgui.cpp */; };
+		E3C920CD89CDCDC418E89124 /* imgui_impl_cocos2dx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92D8518F4C65744DC0032 /* imgui_impl_cocos2dx.cpp */; };
+		E3C922FC3C48BB0A056842A1 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92E32B0F91970917A5466 /* imgui_widgets.cpp */; };
+		E3C9242F867D6EE95CE19D36 /* CCImGuiLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92BEF0169ED91F432EE50 /* CCImGuiLayer.cpp */; };
+		E3C924593F4163DA3E4E1EA1 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92956958D73A09F1779A7 /* imgui_draw.cpp */; };
+		E3C9251C27A5C51F3723521B /* imgui_impl_cocos2dx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92D8518F4C65744DC0032 /* imgui_impl_cocos2dx.cpp */; };
+		E3C9259872D0850A5DADE8FB /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C928E2557AD12AFE0EC31D /* imgui.cpp */; };
+		E3C925A155E3A352EC555B34 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92E32B0F91970917A5466 /* imgui_widgets.cpp */; };
+		E3C9283C48561FA7BCE09392 /* CCIMGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92CE557BB1B2BC2BF9AAB /* CCIMGUI.cpp */; };
+		E3C92DB9EEE11A304734219C /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C9261571C667ADD29BEC0D /* imgui_demo.cpp */; };
+		E3C92E44CFB53CED476D65ED /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C9261571C667ADD29BEC0D /* imgui_demo.cpp */; };
+		E3C92F24D37776430EBA082E /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92956958D73A09F1779A7 /* imgui_draw.cpp */; };
+		E3C92FAB99A85C7CA195A883 /* CCImGuiLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92BEF0169ED91F432EE50 /* CCImGuiLayer.cpp */; };
+		E3C92FE71C12094013662FAB /* CCIMGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92CE557BB1B2BC2BF9AAB /* CCIMGUI.cpp */; };
 		ED545A7C1B68A1F400C3958E /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED545A7B1B68A1F400C3958E /* libiconv.dylib */; };
 		ED545A7E1B68A1FA00C3958E /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED545A7D1B68A1FA00C3958E /* libiconv.dylib */; };
 /* End PBXBuildFile section */
@@ -146,6 +160,22 @@
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D6B0611A1803AB670077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
+		E3C9207594B1CF00C05A1059 /* imgui_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui_internal.h; sourceTree = "<group>"; };
+		E3C922A64687B2B462987923 /* imgui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui.h; sourceTree = "<group>"; };
+		E3C9261571C667ADD29BEC0D /* imgui_demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_demo.cpp; sourceTree = "<group>"; };
+		E3C926160BE4FD23EF17894E /* imstb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_truetype.h; sourceTree = "<group>"; };
+		E3C927FAC4AC20817833C5F4 /* CCIMGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCIMGUI.h; sourceTree = "<group>"; };
+		E3C928E2557AD12AFE0EC31D /* imgui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui.cpp; sourceTree = "<group>"; };
+		E3C92956958D73A09F1779A7 /* imgui_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_draw.cpp; sourceTree = "<group>"; };
+		E3C929ABB9566EB09FEF06D3 /* imconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imconfig.h; sourceTree = "<group>"; };
+		E3C92BEF0169ED91F432EE50 /* CCImGuiLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCImGuiLayer.cpp; sourceTree = "<group>"; };
+		E3C92C4414605F0C3A9C02F7 /* imstb_rectpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_rectpack.h; sourceTree = "<group>"; };
+		E3C92CE557BB1B2BC2BF9AAB /* CCIMGUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCIMGUI.cpp; sourceTree = "<group>"; };
+		E3C92CEEB50B6A5179A5FFE8 /* imstb_textedit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_textedit.h; sourceTree = "<group>"; };
+		E3C92D8518F4C65744DC0032 /* imgui_impl_cocos2dx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_impl_cocos2dx.cpp; sourceTree = "<group>"; };
+		E3C92E32B0F91970917A5466 /* imgui_widgets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_widgets.cpp; sourceTree = "<group>"; };
+		E3C92E73F92C96D17FCA4D09 /* CCImGuiLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImGuiLayer.h; sourceTree = "<group>"; };
+		E3C92EEC9F216F87F104AA31 /* imgui_impl_cocos2dx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui_impl_cocos2dx.h; sourceTree = "<group>"; };
 		ED545A7B1B68A1F400C3958E /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libiconv.dylib; sourceTree = DEVELOPER_DIR; };
 		ED545A7D1B68A1FA00C3958E /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -297,6 +327,13 @@
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
+				E3C920CB982B165516DD6370 /* imgui */,
+				E3C92CE557BB1B2BC2BF9AAB /* CCIMGUI.cpp */,
+				E3C927FAC4AC20817833C5F4 /* CCIMGUI.h */,
+				E3C92BEF0169ED91F432EE50 /* CCImGuiLayer.cpp */,
+				E3C92E73F92C96D17FCA4D09 /* CCImGuiLayer.h */,
+				E3C92D8518F4C65744DC0032 /* imgui_impl_cocos2dx.cpp */,
+				E3C92EEC9F216F87F104AA31 /* imgui_impl_cocos2dx.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -320,6 +357,23 @@
 				503AE10417EB98FF00D1A890 /* Prefix.pch */,
 			);
 			name = mac;
+			sourceTree = "<group>";
+		};
+		E3C920CB982B165516DD6370 /* imgui */ = {
+			isa = PBXGroup;
+			children = (
+				E3C922A64687B2B462987923 /* imgui.h */,
+				E3C928E2557AD12AFE0EC31D /* imgui.cpp */,
+				E3C929ABB9566EB09FEF06D3 /* imconfig.h */,
+				E3C9261571C667ADD29BEC0D /* imgui_demo.cpp */,
+				E3C92956958D73A09F1779A7 /* imgui_draw.cpp */,
+				E3C9207594B1CF00C05A1059 /* imgui_internal.h */,
+				E3C92C4414605F0C3A9C02F7 /* imstb_rectpack.h */,
+				E3C92CEEB50B6A5179A5FFE8 /* imstb_textedit.h */,
+				E3C926160BE4FD23EF17894E /* imstb_truetype.h */,
+				E3C92E32B0F91970917A5466 /* imgui_widgets.cpp */,
+			);
+			path = imgui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,6 +432,7 @@
 				Japanese,
 				French,
 				German,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -460,6 +515,13 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				E3C9203E42FFA487EB03619D /* imgui.cpp in Sources */,
+				E3C92E44CFB53CED476D65ED /* imgui_demo.cpp in Sources */,
+				E3C92F24D37776430EBA082E /* imgui_draw.cpp in Sources */,
+				E3C922FC3C48BB0A056842A1 /* imgui_widgets.cpp in Sources */,
+				E3C92FE71C12094013662FAB /* CCIMGUI.cpp in Sources */,
+				E3C92FAB99A85C7CA195A883 /* CCImGuiLayer.cpp in Sources */,
+				E3C9251C27A5C51F3723521B /* imgui_impl_cocos2dx.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +532,13 @@
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
+				E3C9259872D0850A5DADE8FB /* imgui.cpp in Sources */,
+				E3C92DB9EEE11A304734219C /* imgui_demo.cpp in Sources */,
+				E3C924593F4163DA3E4E1EA1 /* imgui_draw.cpp in Sources */,
+				E3C925A155E3A352EC555B34 /* imgui_widgets.cpp in Sources */,
+				E3C9283C48561FA7BCE09392 /* CCIMGUI.cpp in Sources */,
+				E3C9242F867D6EE95CE19D36 /* CCImGuiLayer.cpp in Sources */,
+				E3C920CD89CDCDC418E89124 /* imgui_impl_cocos2dx.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
