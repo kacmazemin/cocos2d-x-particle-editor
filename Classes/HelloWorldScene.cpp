@@ -197,22 +197,104 @@ bool HelloWorld::init()
 
                 static int current_type = (int)ps->getEmitterMode();
                 static constexpr std::array<const char*,2> types{"Gravity", "Radial"};
+
+                ImGui::Spacing();
+                ImGui::Spacing();
+
                 if(ImGui::Combo("Type", &current_type, types.data(),2))
                 {
                     ps->setEmitterMode(static_cast<ParticleSystem::Mode >(current_type));
                 }
 
-                static std::array<float, 2> s_gravity{ps->getGravity().x, ps->getGravity().y};
-                if(ImGui::SliderFloat2("gravity", s_gravity.data(), -1000.f, 1000.f))
+                ImGui::Spacing();
+                ImGui::Spacing();
+
+                if(ps->getEmitterMode() == ParticleSystem::Mode::GRAVITY)
                 {
-                    ps->setGravity(Vec2{s_gravity.data()});
+                    static float s_speed = ps->getSpeed();
+                    if(ImGui::InputFloat("Speed", &s_speed, 0.f, 2000.0f))
+                    {
+                        ps->setSpeed(s_speed);
+                    }
+
+                    static float s_speed_variance = ps->getSpeedVar();
+                    if(ImGui::InputFloat("Speed Variance", &s_speed_variance, 0.f, 2000.0f))
+                    {
+                        ps->setSpeedVar(s_speed);
+                    }
+
+                    static std::array<float, 2> s_gravity{ps->getGravity().x, ps->getGravity().y};
+                    if(ImGui::SliderFloat2("Gravity", s_gravity.data(), -2000.f, 2000.f))
+                    {
+                        ps->setGravity(Vec2{s_gravity.data()});
+                    }
+
+                    static float s_radial_acc = ps->getRadialAccel();
+                    if(ImGui::SliderFloat("Radial Acceleration", &s_radial_acc, -2000.f, 2000.0f))
+                    {
+                        ps->setRadialAccel(s_radial_acc);
+                    }
+
+                    static float s_radial_acc_var = ps->getRadialAccelVar();
+                    if(ImGui::SliderFloat("Radial Acceleration Variance", &s_radial_acc_var, -2000.f, 2000.0f))
+                    {
+                        ps->setRadialAccelVar(s_radial_acc_var);
+                    }
+
+                    static float s_tangential_acc = ps->getTangentialAccel();
+                    if(ImGui::SliderFloat("Tangential Acceleration", &s_tangential_acc, -2000.f, 2000.0f))
+                    {
+                        ps->setTangentialAccel(s_tangential_acc);
+                    }
+
+                    static float s_tangential_acc_var = ps->getTangentialAccelVar();
+                    if(ImGui::SliderFloat("Tangential Acceleration Variance", &s_tangential_acc_var, -2000.f, 2000.0f))
+                    {
+                        ps->setTangentialAccel(s_tangential_acc_var);
+                    }
+                }
+                else
+                {
+                    static float s_startRadius = ps->getStartRadius();
+                    if(ImGui::SliderFloat("Start Radius", &s_startRadius, 0.f, 1000.0f))
+                    {
+                        ps->setStartRadius(s_startRadius);
+                    }
+                    
+                    static float s_startRadiusVar = ps->getStartRadiusVar();
+                    if(ImGui::SliderFloat("Start Radius Variance", &s_startRadiusVar, 0.f, 1000.0f))
+                    {
+                        ps->setStartRadiusVar(s_startRadiusVar);
+                    }
+                    
+                    static float s_endRadius = ps->getEndRadius();
+                    if(ImGui::SliderFloat("End Radius", &s_endRadius, 0.f, 1000.0f))
+                    {
+                        ps->setEndRadius(s_endRadius);
+                    }
+                    
+                    static float s_endRadiusVar = ps->getEndRadiusVar();
+                    if(ImGui::SliderFloat("End Radius Variance", &s_endRadiusVar, 0.f, 1000.0f))
+                    {
+                        ps->setEndRadiusVar(s_endRadiusVar);
+                    }
+
+                    static float s_rotatePerSecond = ps->getRotatePerSecond();
+                    if(ImGui::SliderFloat("Rotate Per Second", &s_rotatePerSecond, -1000.f, 1000.0f))
+                    {
+                        ps->setRotatePerSecond(s_rotatePerSecond);
+                    }
+
+                    static float s_rotatePerSecondVar = ps->getRotatePerSecondVar();
+                    if(ImGui::SliderFloat("Rotate Per Second Variance", &s_rotatePerSecondVar, -1000.f, 1000.0f))
+                    {
+                        ps->setRotatePerSecondVar(s_rotatePerSecondVar);
+                    }
                 }
 
-
-                //ImGui::Text("speed %f", ps->getSpeed());
-//                ImGui::Text("speed var %f", ps->getSpeedVar());
                 ImGui::EndTabItem();
             }
+
             if(ImGui::BeginTabItem("Particle Settings"))
             {
                 ImGui::EndTabItem();
