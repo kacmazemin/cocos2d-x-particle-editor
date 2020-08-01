@@ -303,6 +303,7 @@ bool HelloWorld::init()
                     ps->setLife(s_lifeTime);
                 }
 
+                // todo tooltips
                 if(ImGui::IsItemHovered())
                 {
                     ImGui::BeginTooltip();
@@ -316,6 +317,8 @@ bool HelloWorld::init()
                     ps->setLifeVar(s_lifeTimeVar);
                 }
 
+                ImGui::Separator();
+
                 static float s_startSize = ps->getStartSize();
                 if(ImGui::SliderFloat("Start Size", &s_startSize, 0.f, 512.0f))
                 {
@@ -327,6 +330,8 @@ bool HelloWorld::init()
                 {
                     ps->setStartSizeVar(s_startSizeVar);
                 }
+
+                ImGui::Separator();
 
                 static float s_endSize = ps->getEndSize();
                 if(ImGui::SliderFloat("End Size", &s_endSize, 0.f, 512.0f))
@@ -340,6 +345,8 @@ bool HelloWorld::init()
                     ps->setEndSizeVar(s_endSizeVar);
                 }
 
+                ImGui::Separator();
+
                 static float s_startSpin = ps->getStartSpin();
                 if(ImGui::SliderFloat("Start Rotation", &s_startSpin, 0.f, 360.0f))
                 {
@@ -351,6 +358,8 @@ bool HelloWorld::init()
                 {
                     ps->setStartSpinVar(s_startSpinVar);
                 }
+
+                ImGui::Separator();
 
                 static float s_endSpin = ps->getEndSpin();
                 if(ImGui::SliderFloat("End Rotation", &s_endSpin, 0.f, 360.0f))
@@ -369,6 +378,80 @@ bool HelloWorld::init()
 
             if(ImGui::BeginTabItem("Color Settings"))
             {
+                static Color4F s_start_color = ps->getStartColor();
+                if(ImGui::ColorEdit4("Start Color", reinterpret_cast<float*>(&s_start_color)))
+                {
+                    ps->setStartColor(s_start_color);
+                }
+
+                static Color4F s_start_color_variance = ps->getStartColorVar();
+                if(ImGui::ColorEdit4("Start Color Variance", reinterpret_cast<float*>(&s_start_color_variance)))
+                {
+                    ps->setStartColorVar(s_start_color_variance);
+                }
+                
+                static Color4F s_end_color = ps->getEndColor();
+                if(ImGui::ColorEdit4("End Color", reinterpret_cast<float*>(&s_end_color)))
+                {
+                    ps->setEndColor(s_end_color);
+                }
+
+                static Color4F s_end_color_variance = ps->getEndColorVar();
+                if(ImGui::ColorEdit4("End Color Variance", reinterpret_cast<float*>(&s_end_color_variance)))
+                {
+                    ps->setEndColorVar(s_end_color_variance);
+                }
+
+                static constexpr std::array<const char*, 9> blendFuncNames
+                {
+                    "GL_ZERO",
+                    "GL_ONE",
+                    "GL_DST_COLOR",
+                    "GL_ONE_MINUS_DST_COLOR",
+                    "GL_SRC_ALPHA",
+                    "GL_ONE_MINUS_SRC_ALPHA",
+                    "GL_DST_ALPHA",
+                    "GL_ONE_MINUS_DST_ALPHA",
+                    "GL_SRC_ALPHA_SATURATE"
+                };
+
+                static int currentBlendSrc = 0;
+                static int currentBlendDst = 0;
+
+                const auto blendIdxToEnum = [](int idx) -> GLenum {
+                    switch(idx) {
+                        default:
+                        case 0:
+                            return GL_ZERO;
+                        case 1:
+                            return GL_ONE;
+                        case 2:
+                            return GL_DST_COLOR;
+                        case 3:
+                            return GL_ONE_MINUS_DST_COLOR;
+                        case 4:
+                            return GL_SRC_ALPHA;
+                        case 5:
+                            return GL_ONE_MINUS_SRC_ALPHA;
+                        case 6:
+                            return GL_DST_ALPHA;
+                        case 7:
+                            return GL_ONE_MINUS_DST_ALPHA;
+                        case 8:
+                            return GL_SRC_ALPHA_SATURATE;
+                    }
+                };
+
+                if(ImGui::Combo("Blend Source", &currentBlendSrc, blendFuncNames.data(), blendFuncNames.size()))
+                {
+                    ps->setBlendFunc(BlendFunc{blendIdxToEnum(currentBlendSrc), ps->getBlendFunc().dst});
+                }
+
+                if(ImGui::Combo("Blend Destination", &currentBlendDst, blendFuncNames.data(), blendFuncNames.size()))
+                {
+                    ps->setBlendFunc(BlendFunc{ps->getBlendFunc().src, blendIdxToEnum(currentBlendDst)});
+                }
+
                 ImGui::EndTabItem();
             }
 
@@ -376,6 +459,7 @@ bool HelloWorld::init()
             {
                 ImGui::EndTabItem();
             }
+
             ImGui::EndTabBar();
         }
 
