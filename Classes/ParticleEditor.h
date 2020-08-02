@@ -89,6 +89,7 @@ private:
         "GL_SRC_ALPHA_SATURATE"
     };
 
+	std::unordered_map<std::string, cocos2d::Image*> imageCache;
 	std::vector<ParticleSystemData> systemData;
 	size_t currentIdx = 0;
 
@@ -96,7 +97,7 @@ private:
 	void addParticleSystem(cocos2d::ParticleSystem* ps);
 	static void drawParticleSystemData(ParticleSystemData& data);
 
-	static void changeTexture(ParticleSystemData& data, const std::string& texturePath);
+	void changeTexture(ParticleSystemData& data, const std::string& texturePath);
 
 	static void serialize(const ParticleSystemData& data, const std::string& path);
 	static void updatePropertiesFromSystem(ParticleSystemData& data);

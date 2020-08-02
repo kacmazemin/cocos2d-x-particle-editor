@@ -11,6 +11,7 @@
 #include "base/base64.h"
 #include "platform/CCFileUtils.h"
 #include "platform/CCImage.h"
+#include "renderer/CCTextureCache.h"
 
 std::string compressToGzip(unsigned char* input, const size_t inputSize)
 {
@@ -314,9 +315,26 @@ void ParticleEditor::drawParticleSystemData(ParticleSystemData& data)
 
 void ParticleEditor::changeTexture(ParticleSystemData& data, const std::string& texturePath)
 {
-    // todo create cocos2d::Image (and cache it?)
-    // todo create cocos2d::Texture and set it to ps
-    // todo update data.image
+    const auto it = imageCache.find(texturePath); 
+    if(it == imageCache.end()) {
+        auto* img = new cocos2d::Image(); // its fine, not going to be freed until the end anyway
+        if(img->initWithImageFile(texturePath)) {
+            imageCache.emplace(texturePath, img);
+            auto* tex = cocos2d::Director::getInstance()->getTextureCache()->addImage(img, texturePath);
+            data.system->setTexture(tex);
+            data.textureImage = img;
+            updatePropertiesFromSystem(data);
+        }
+        else {
+            // todo issue a warning
+        }
+    }
+    else {
+        auto* tex = cocos2d::Director::getInstance()->getTextureCache()->getTextureForKey(texturePath);
+        data.system->setTexture(tex);
+        data.textureImage = it->second;
+        updatePropertiesFromSystem(data);
+    }
 }
 
 void ParticleEditor::serialize(const ParticleSystemData& data, const std::string& path)
