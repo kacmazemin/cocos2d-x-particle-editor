@@ -32,7 +32,7 @@ private:
 		int maxParticles = 0;
 		float emitAngle = 0.f;
 		float emitAngleVar = 0.f;
-		int currentTypeIdx = 0;
+		int typeIdx = 0;
 
 		// emitter props - gravity
 		float speed = 0.f;
@@ -69,11 +69,25 @@ private:
 		cocos2d::Color4F startColorVar;
 		cocos2d::Color4F endColor;
 		cocos2d::Color4F endColorVar;
+        int blendSrcIdx = 0;
+        int blendDstIdx = 0;
 
 		// todo texture props
 	};
 	
     static constexpr std::array<const char*, 2> typeNames{"Gravity", "Radial"};
+
+    static constexpr std::array<const char*, 9> blendFuncNames {
+        "GL_ZERO",
+        "GL_ONE",
+        "GL_DST_COLOR",
+        "GL_ONE_MINUS_DST_COLOR",
+        "GL_SRC_ALPHA",
+        "GL_ONE_MINUS_SRC_ALPHA",
+        "GL_DST_ALPHA",
+        "GL_ONE_MINUS_DST_ALPHA",
+        "GL_SRC_ALPHA_SATURATE"
+    };
 
 	std::vector<ParticleSystemData> systemData;
 	size_t currentIdx = 0;
@@ -82,10 +96,15 @@ private:
 	void addParticleSystem(cocos2d::ParticleSystem* ps);
 	static void drawParticleSystemData(ParticleSystemData& data);
 
+	static void changeTexture(ParticleSystemData& data, const std::string& texturePath);
+
 	static void serialize(const ParticleSystemData& data, const std::string& path);
 	static void updatePropertiesFromSystem(ParticleSystemData& data);
 	
 	template<typename T, typename M>
 	static T* castContainer(M& m) { return reinterpret_cast<T*>(&m); }
+
+	static GLenum blendIndexToGLenum(int idx);
+	static int blendGLenumToIndex(GLenum e);
 };
 

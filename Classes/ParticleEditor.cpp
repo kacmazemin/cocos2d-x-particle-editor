@@ -119,9 +119,9 @@ void ParticleEditor::drawParticleSystemData(ParticleSystemData& data)
             ImGui::Spacing();
             ImGui::Spacing();
 
-            if(ImGui::Combo("Type", &data.currentTypeIdx, typeNames.data(),2))
+            if(ImGui::Combo("Type", &data.typeIdx, typeNames.data(),2))
             {
-                ps->setEmitterMode(static_cast<cocos2d::ParticleSystem::Mode>(data.currentTypeIdx));
+                ps->setEmitterMode(static_cast<cocos2d::ParticleSystem::Mode>(data.typeIdx));
                 updatePropertiesFromSystem(data);
             }
 
@@ -290,6 +290,16 @@ void ParticleEditor::drawParticleSystemData(ParticleSystemData& data)
                 ps->setEndColorVar(data.endColorVar);
             }
 
+            if(ImGui::Combo("Blend Source", &data.blendSrcIdx, blendFuncNames.data(), blendFuncNames.size()))
+            {
+                ps->setBlendFunc(cocos2d::BlendFunc{blendIndexToGLenum(data.blendSrcIdx), ps->getBlendFunc().dst});
+            }
+
+            if(ImGui::Combo("Blend Destination", &data.blendDstIdx, blendFuncNames.data(), blendFuncNames.size()))
+            {
+                ps->setBlendFunc(cocos2d::BlendFunc{ps->getBlendFunc().src, blendIndexToGLenum(data.blendDstIdx)});
+            }
+
             ImGui::EndTabItem();
         }
 
@@ -302,6 +312,13 @@ void ParticleEditor::drawParticleSystemData(ParticleSystemData& data)
     }
 }
 
+void ParticleEditor::changeTexture(ParticleSystemData& data, const std::string& texturePath)
+{
+    // todo create cocos2d::Image (and cache it?)
+    // todo create cocos2d::Texture and set it to ps
+    // todo update data.image
+}
+
 void ParticleEditor::serialize(const ParticleSystemData& data, const std::string& path)
 {
     cocos2d::ValueMap dict;
@@ -310,7 +327,7 @@ void ParticleEditor::serialize(const ParticleSystemData& data, const std::string
     dict.emplace("maxParticles", cocos2d::Value{data.maxParticles});
     dict.emplace("angle", cocos2d::Value{data.emitAngle});
     dict.emplace("angleVariance", cocos2d::Value{data.emitAngleVar});
-    dict.emplace("emitterType", cocos2d::Value{data.currentTypeIdx});
+    dict.emplace("emitterType", cocos2d::Value{data.typeIdx});
     
     dict.emplace("sourcePositionx", cocos2d::Value{data.system->getPositionX()});
     dict.emplace("sourcePositionx", cocos2d::Value{data.system->getPositionY()});
@@ -372,8 +389,8 @@ void ParticleEditor::serialize(const ParticleSystemData& data, const std::string
     dict.emplace("finishColorVarianceBlue", cocos2d::Value{data.endColorVar.b});
     dict.emplace("finishColorVarianceAlpha", cocos2d::Value{data.endColorVar.a});
 
-    // todo dict.emplace("blendFuncSource", cocos2d::Value{data..b});
-    // todo dict.emplace("blendFuncDestination", cocos2d::Value{data.endColorVar.a});
+    dict.emplace("blendFuncSource", cocos2d::Value{blendIndexToGLenum(data.blendSrcIdx)});
+    dict.emplace("blendFuncDestination", cocos2d::Value{blendIndexToGLenum(data.blendDstIdx)});
 
     const auto compressed = compressToGzip(data.textureImage->getData(), data.textureImage->getDataLen());
 
@@ -398,7 +415,7 @@ void ParticleEditor::updatePropertiesFromSystem(ParticleSystemData& data)
 	data.maxParticles = ps->getTotalParticles();
 	data.emitAngle = ps->getAngle();
 	data.emitAngleVar = ps->getAngleVar();
-	data.currentTypeIdx = static_cast<int>(ps->getEmitterMode());
+	data.typeIdx = static_cast<int>(ps->getEmitterMode());
 
     if(ps->getEmitterMode() == cocos2d::ParticleSystem::Mode::GRAVITY) {
 	    data.speed = ps->getSpeed();
@@ -430,4 +447,64 @@ void ParticleEditor::updatePropertiesFromSystem(ParticleSystemData& data)
 	data.startSpinVar = ps->getStartSpinVar();
 	data.endSpin = ps->getEndSpin();
 	data.endSpinVar = ps->getEndSpinVar();
+
+    // color props
+    data.startColor = ps->getStartColor();
+    data.startColorVar = ps->getStartColorVar();
+    data.endColor = ps->getEndColor();
+    data.endColorVar = ps->getEndColorVar();
+    data.blendSrcIdx = blendGLenumToIndex(ps->getBlendFunc().src);
+    data.blendDstIdx = blendGLenumToIndex(ps->getBlendFunc().dst);
+}
+
+GLenum ParticleEditor::blendIndexToGLenum(const int idx)
+{
+    switch(idx) {
+        default:
+        case 0:
+            return GL_ZERO;
+        case 1:
+            return GL_ONE;
+        case 2:
+            return GL_DST_COLOR;
+        case 3:
+            return GL_ONE_MINUS_DST_COLOR;
+        case 4:
+            return GL_SRC_ALPHA;
+        case 5:
+            return GL_ONE_MINUS_SRC_ALPHA;
+        case 6:
+            return GL_DST_ALPHA;
+        case 7:
+            return GL_ONE_MINUS_DST_ALPHA;
+        case 8:
+            return GL_SRC_ALPHA_SATURATE;
+    }
+}
+
+int ParticleEditor::blendGLenumToIndex(const GLenum e)
+{
+	switch(e) {
+        case GL_ZERO:
+            return 0;
+        case GL_ONE:
+            return 1;
+        case GL_DST_COLOR:
+            return 2;
+        case GL_ONE_MINUS_DST_COLOR:
+            return 3;
+        case GL_SRC_ALPHA:
+            return 4;
+        case GL_ONE_MINUS_SRC_ALPHA:
+            return 5;
+        case GL_DST_ALPHA:
+            return 6;
+        case GL_ONE_MINUS_DST_ALPHA:
+            return 7;
+        case GL_SRC_ALPHA_SATURATE:
+            return 8;
+        default:
+            CCASSERT(false, "unimplemented blendfunc");
+            return 0;
+    }
 }
