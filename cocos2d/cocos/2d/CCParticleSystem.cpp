@@ -219,6 +219,7 @@ ParticleSystem::ParticleSystem()
 , _emissionRate(0)
 , _totalParticles(0)
 , _texture(nullptr)
+, _image(nullptr)
 , _blendFunc(BlendFunc::ALPHA_PREMULTIPLIED)
 , _opacityModifyRGB(false)
 , _yCoordFlipped(1)
@@ -316,7 +317,7 @@ bool ParticleSystem::initWithDictionary(ValueMap& dictionary, const std::string&
     bool ret = false;
     unsigned char *buffer = nullptr;
     unsigned char *deflated = nullptr;
-    Image *image = nullptr;
+    CC_SAFE_RELEASE(_image);
     do 
     {
         int maxParticles = dictionary["maxParticles"].asInt();
@@ -527,14 +528,12 @@ bool ParticleSystem::initWithDictionary(ValueMap& dictionary, const std::string&
                         CC_BREAK_IF(!deflated);
                         
                         // For android, we should retain it in VolatileTexture::addImage which invoked in Director::getInstance()->getTextureCache()->addUIImage()
-                        image = new (std::nothrow) Image();
-                        bool isOK = image->initWithImageData(deflated, deflatedLen);
+                        _image = new (std::nothrow) Image();
+                        bool isOK = _image->initWithImageData(deflated, deflatedLen);
                         CCASSERT(isOK, "CCParticleSystem: error init image with Data");
                         CC_BREAK_IF(!isOK);
                         
-                        setTexture(Director::getInstance()->getTextureCache()->addImage(image, _plistFile + textureName));
-
-                        image->release();
+                        setTexture(Director::getInstance()->getTextureCache()->addImage(_image, _plistFile + textureName));
                     }
                 }
                 
@@ -606,6 +605,7 @@ ParticleSystem::~ParticleSystem()
     //unscheduleUpdate();
     _particleData.release();
     CC_SAFE_RELEASE(_texture);
+    CC_SAFE_RELEASE(_image);
 }
 
 void ParticleSystem::addParticles(int count)

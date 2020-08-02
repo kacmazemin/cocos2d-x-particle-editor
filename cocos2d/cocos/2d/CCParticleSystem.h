@@ -142,6 +142,7 @@ public:
 
 //typedef void (*CC_UPDATE_PARTICLE_IMP)(id, SEL, tParticle*, Vec2);
 
+class Image;
 class Texture2D;
 
 /** @class ParticleSystem
@@ -752,6 +753,9 @@ public:
     virtual void update(float dt) override;
     virtual Texture2D* getTexture() const override;
     virtual void setTexture(Texture2D *texture) override;
+ 
+    Image* getImage() const { return _image; }
+
     /**
     *@code
     *When this function bound into js or lua,the parameter will be changed
@@ -973,6 +977,8 @@ protected:
     int _totalParticles;
     /** conforms to CocosNodeTexture protocol */
     Texture2D* _texture;
+    /** conforms to CocosNodeTexture protocol */
+    Image *_image;
     /** conforms to CocosNodeTexture protocol */
     BlendFunc _blendFunc;
     /** does the alpha value modify color */
