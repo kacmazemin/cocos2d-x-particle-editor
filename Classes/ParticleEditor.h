@@ -90,7 +90,6 @@ private:
     cocos2d::Node* parent;
 	static std::unordered_map<std::string, cocos2d::Image*> imageCache;
 	static std::vector<ParticleSystemData> systemData;
-	static std::vector<GLuint> imageTextureData;
 
 	void addParticleSystem(const std::string& path);
 	void addParticleSystem(cocos2d::ParticleSystem* ps);

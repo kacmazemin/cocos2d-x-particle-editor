@@ -2,6 +2,8 @@
 
 #include <array>
 #include <string>
+#include <iostream>
+#include "dirent.h"
 
 #include "CCIMGUI.h"
 #include "CCImGuiLayer.h"
@@ -20,7 +22,6 @@
 
 std::unordered_map<std:: string, cocos2d::Image*>  ParticleEditor::imageCache;
 std::vector<ParticleEditor::ParticleSystemData> ParticleEditor::systemData;
-std::vector<GLuint > ParticleEditor::imageTextureData;
 
 namespace
 {
@@ -383,17 +384,18 @@ void ParticleEditor::drawParticleSystemData(ParticleSystemData& data)
 
         if(ImGui::BeginTabItem("Texture Settings"))
         {
-            ImGui::PushID(0);
-            if(ImGui::ImageButton((void*)(intptr_t)imageTextureData[0], ImVec2(100, 100)))
+            int i = 0;
+            for(auto iter = imageCache.begin(); iter != imageCache.end(); ++iter)
             {
-                changeTexture(systemData[currentIdx], "CloseNormal.png");
+                ImGui::PushID(i);
+                auto* tex = cocos2d::Director::getInstance()->getTextureCache()->getTextureForKey(iter->first);
+                if(CCIMGUI::getInstance()->imageButton(tex, ImVec2{100,100}))
+                {
+                    changeTexture(systemData[currentIdx], iter->first);
+                }
+                ImGui::PopID();
+                i++;
             }
-            ImGui::PopID();
-
-/*            if(ImGui::Button("Change", ImVec2{100,20}))
-            {
-                changeTexture(systemData[currentIdx], "CloseNormal.png");
-            }*/
 
             ImGui::EndTabItem();
         }
@@ -618,11 +620,34 @@ int ParticleEditor::blendGLenumToIndex(const GLenum e)
 
 void ParticleEditor::loadSprites()
 {
-    int my_image_width = 0;
-    int my_image_height = 0;
-    GLuint my_image_texture = 0;
-    bool ret = LoadTextureFromFile("res/sprites/money.png", &my_image_texture, &my_image_width, &my_image_height);
-    IM_ASSERT(ret);
+    DIR *dir;
+    struct dirent *ent;
 
-    imageTextureData.push_back(my_image_texture);
+    if ((dir = opendir ("res/sprites")) != NULL)
+    {
+        /* print all the files and directories within directory */
+        while ((ent = readdir (dir)) != NULL)
+        {
+            printf ("%s\n", ent->d_name);
+
+            std::string path = cocos2d::StringUtils::format("res/sprites/%s", ent->d_name);
+            const auto it = imageCache.find(path);
+            if(it == imageCache.end())
+            {
+                auto* img = new cocos2d::Image();
+                if(img->initWithImageFile(path))
+                {
+                    auto* tex = cocos2d::Director::getInstance()->getTextureCache()->addImage(img, path);
+                    imageCache.emplace(path, img);
+
+                }
+            }
+        }
+        closedir (dir);
+    }
+    else
+    {
+        /* could not open directory */
+        perror ("");
+    }
 }
