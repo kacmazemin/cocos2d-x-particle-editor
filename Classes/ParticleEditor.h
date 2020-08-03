@@ -89,6 +89,7 @@ private:
         "GL_SRC_ALPHA_SATURATE"
     };
 
+	cocos2d::Node* parent;
 	std::unordered_map<std::string, cocos2d::Image*> imageCache;
 	std::vector<ParticleSystemData> systemData;
 	size_t currentIdx = 0;

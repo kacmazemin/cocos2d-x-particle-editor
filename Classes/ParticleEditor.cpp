@@ -47,6 +47,7 @@ std::string compressToGzip(unsigned char* input, const size_t inputSize)
 }
 
 ParticleEditor::ParticleEditor(cocos2d::Node* parent)
+    : parent{parent}
 {
     CC_ASSERT(parent);
     addParticleSystem("Galaxy.plist");
@@ -78,6 +79,7 @@ void ParticleEditor::addParticleSystem(const std::string& path)
 void ParticleEditor::addParticleSystem(cocos2d::ParticleSystem* ps)
 {
     CC_ASSERT(ps);
+    if(!ps->getParent()) { parent->addChild(ps); }
     ps->setPosition(cocos2d::Vec2::ZERO);
     systemData.push_back({ps, ps->getImage()});
     updatePropertiesFromSystem(systemData.back());
