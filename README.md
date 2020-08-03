@@ -1,1 +1,1 @@
-# cocos2d-x-editor
+# cocos2d-x-particle-editor
