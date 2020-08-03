@@ -177,7 +177,6 @@
 		E3C92CE557BB1B2BC2BF9AAB /* CCIMGUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCIMGUI.cpp; sourceTree = "<group>"; };
 		E3C92CEEB50B6A5179A5FFE8 /* imstb_textedit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_textedit.h; sourceTree = "<group>"; };
 		E3C92D8518F4C65744DC0032 /* imgui_impl_cocos2dx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_impl_cocos2dx.cpp; sourceTree = "<group>"; };
-		E3C92D8ED06D6C12CA219F36 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		E3C92E32B0F91970917A5466 /* imgui_widgets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_widgets.cpp; sourceTree = "<group>"; };
 		E3C92E73F92C96D17FCA4D09 /* CCImGuiLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImGuiLayer.h; sourceTree = "<group>"; };
 		E3C92EEC9F216F87F104AA31 /* imgui_impl_cocos2dx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui_impl_cocos2dx.h; sourceTree = "<group>"; };
@@ -341,7 +340,6 @@
 				E3C92EEC9F216F87F104AA31 /* imgui_impl_cocos2dx.h */,
 				E3C92609F5487923EFEB772B /* ParticleEditor.cpp */,
 				E3C927B9EE195D608F26F39D /* ParticleEditor.h */,
-				E3C92D8ED06D6C12CA219F36 /* stb_image.h */,
 			);
 			name = Classes;
 			path = ../Classes;
