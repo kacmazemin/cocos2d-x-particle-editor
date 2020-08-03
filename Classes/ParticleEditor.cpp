@@ -6,6 +6,7 @@
 #include "CCIMGUI.h"
 #include "CCImGuiLayer.h"
 #include <zlib/include/zlib.h>
+#include "base/CCDirector.h"
 
 #include "2d/CCParticleSystem.h"
 #include "2d/CCParticleExamples.h"
@@ -30,6 +31,7 @@ namespace
             "GL_SRC_ALPHA_SATURATE"
     };
 }
+
 std::string compressToGzip(unsigned char* input, const size_t inputSize)
 {
     z_stream zs;
@@ -102,8 +104,9 @@ void ParticleEditor::addParticleSystem(cocos2d::ParticleSystem* ps)
     {
         parent->addChild(ps);
     }
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    ps->setPosition(cocos2d::Vec2::ZERO);
+
+    auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+    ps->setPosition(visibleSize.width * .5f, visibleSize.height * .5f);
     systemData.push_back({ps, ps->getImage()});
     updatePropertiesFromSystem(systemData.back());
 }
