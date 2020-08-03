@@ -22,7 +22,6 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include <cocos/base/firePngData.h>
 #include <array>
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
@@ -45,30 +44,6 @@ static void problemLoading(const char* filename)
     printf("Error while loading: %s\n", filename);
     printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
 }
-
-static Texture2D* getDefaultTexture()
-{
-    Texture2D* texture = nullptr;
-    Image* image = nullptr;
-    do
-    {
-        const std::string key = "/__firePngData";
-        texture = Director::getInstance()->getTextureCache()->getTextureForKey(key);
-        CC_BREAK_IF(texture != nullptr);
-
-        image = new (std::nothrow) Image();
-        CC_BREAK_IF(nullptr == image);
-        bool ret = image->initWithImageData(__firePngData, sizeof(__firePngData));
-        CC_BREAK_IF(!ret);
-
-        texture = Director::getInstance()->getTextureCache()->addImage(image, key);
-    } while (0);
-
-    CC_SAFE_RELEASE(image);
-
-    return texture;
-}
-
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
