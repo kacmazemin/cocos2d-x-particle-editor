@@ -69,6 +69,8 @@ ParticleEditor::ParticleEditor(cocos2d::Node* parent)
     : parent{parent}
 {
     CC_ASSERT(parent);
+    visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+    visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
     addParticleSystem("Galaxy.plist");
 }
 
@@ -82,6 +84,7 @@ void ParticleEditor::draw()
         // - stop
         // - pause/resume
         // - reset
+//        if(ImGui::Button("Reset", ))
         ImGui::End();
 
     }
@@ -105,8 +108,7 @@ void ParticleEditor::addParticleSystem(cocos2d::ParticleSystem* ps)
         parent->addChild(ps);
     }
 
-    auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
-    ps->setPosition(visibleSize.width * .5f, visibleSize.height * .5f);
+    ps->setPosition(visibleOrigin.x + visibleSize.width * .5f, visibleOrigin.y + visibleSize.height * .5f);
     systemData.push_back({ps, ps->getImage()});
     updatePropertiesFromSystem(systemData.back());
 }

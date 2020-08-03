@@ -81,6 +81,9 @@ private:
 		}
 	};
 
+	cocos2d::Size visibleSize = cocos2d::Size::ZERO;
+	cocos2d::Vec2 visibleOrigin = cocos2d::Vec2::ZERO;
+
     cocos2d::Node* parent;
 	std::unordered_map<std::string, cocos2d::Image*> imageCache;
 	std::vector<ParticleSystemData> systemData;
