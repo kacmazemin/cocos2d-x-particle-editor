@@ -6,6 +6,7 @@
 
 #include "base/ccTypes.h"
 #include "math/Vec2.h"
+#include "imgui.h"
 
 namespace cocos2d
 {
@@ -13,6 +14,8 @@ class Node;
 class ParticleSystem;
 class Image;
 }
+
+static size_t currentIdx = 0;
 
 class ParticleEditor
 {
@@ -85,16 +88,17 @@ private:
 	cocos2d::Vec2 visibleOrigin = cocos2d::Vec2::ZERO;
 
     cocos2d::Node* parent;
-	std::unordered_map<std::string, cocos2d::Image*> imageCache;
-	std::vector<ParticleSystemData> systemData;
-	size_t currentIdx = 0;
+	static std::unordered_map<std::string, cocos2d::Image*> imageCache;
+	static std::vector<ParticleSystemData> systemData;
+	static std::vector<GLuint> imageTextureData;
 
 	void addParticleSystem(const std::string& path);
 	void addParticleSystem(cocos2d::ParticleSystem* ps);
 	void resetCurrentParticleSystem();
+	void loadSprites();
 	static void drawParticleSystemData(ParticleSystemData& data);
 
-	void changeTexture(ParticleSystemData& data, const std::string& texturePath);
+	static void changeTexture(ParticleSystemData& data, const std::string& texturePath);
 
 	static void serialize(const ParticleSystemData& data, const std::string& path);
 	static void updatePropertiesFromSystem(ParticleSystemData& data);

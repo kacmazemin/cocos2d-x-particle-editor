@@ -8,12 +8,19 @@
 #include <zlib/include/zlib.h>
 #include "base/CCDirector.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 #include "2d/CCParticleSystem.h"
 #include "2d/CCParticleExamples.h"
 #include "base/base64.h"
 #include "platform/CCFileUtils.h"
 #include "platform/CCImage.h"
 #include "renderer/CCTextureCache.h"
+
+std::unordered_map<std:: string, cocos2d::Image*>  ParticleEditor::imageCache;
+std::vector<ParticleEditor::ParticleSystemData> ParticleEditor::systemData;
+std::vector<GLuint > ParticleEditor::imageTextureData;
 
 namespace
 {
@@ -30,6 +37,37 @@ namespace
             "GL_ONE_MINUS_DST_ALPHA",
             "GL_SRC_ALPHA_SATURATE"
     };
+}
+
+// Simple helper function to load an image into a OpenGL texture with common settings
+bool LoadTextureFromFile(const char* filename, GLuint* out_texture, int* out_width, int* out_height)
+{
+    // Load from file
+    int image_width = 0;
+    int image_height = 0;
+    unsigned char* image_data = stbi_load(filename, &image_width, &image_height, NULL, 4);
+    if (image_data == NULL)
+        return false;
+
+    // Create a OpenGL texture identifier
+    GLuint image_texture;
+    glGenTextures(1, &image_texture);
+    glBindTexture(GL_TEXTURE_2D, image_texture);
+
+    // Setup filtering parameters for display
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    // Upload pixels into texture
+    glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image_width, image_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data);
+    stbi_image_free(image_data);
+
+    *out_texture = image_texture;
+    *out_width = image_width;
+    *out_height = image_height;
+
+    return true;
 }
 
 std::string compressToGzip(unsigned char* input, const size_t inputSize)
@@ -71,7 +109,9 @@ ParticleEditor::ParticleEditor(cocos2d::Node* parent)
     CC_ASSERT(parent);
     visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
     visibleOrigin = cocos2d::Director::getInstance()->getVisibleOrigin();
-    addParticleSystem("Galaxy.plist");
+
+    loadSprites();
+    addParticleSystem("res/particles/Comet.plist");
 }
 
 void ParticleEditor::draw()
@@ -343,6 +383,18 @@ void ParticleEditor::drawParticleSystemData(ParticleSystemData& data)
 
         if(ImGui::BeginTabItem("Texture Settings"))
         {
+            ImGui::PushID(0);
+            if(ImGui::ImageButton((void*)(intptr_t)imageTextureData[0], ImVec2(100, 100)))
+            {
+                changeTexture(systemData[currentIdx], "CloseNormal.png");
+            }
+            ImGui::PopID();
+
+/*            if(ImGui::Button("Change", ImVec2{100,20}))
+            {
+                changeTexture(systemData[currentIdx], "CloseNormal.png");
+            }*/
+
             ImGui::EndTabItem();
         }
 
@@ -352,7 +404,7 @@ void ParticleEditor::drawParticleSystemData(ParticleSystemData& data)
 
 void ParticleEditor::changeTexture(ParticleSystemData& data, const std::string& texturePath)
 {
-    const auto it = imageCache.find(texturePath); 
+    const auto it = imageCache.find(texturePath);
     if(it == imageCache.end()) {
         auto* img = new cocos2d::Image(); // its fine, not going to be freed until the end anyway
         if(img->initWithImageFile(texturePath)) {
@@ -562,4 +614,15 @@ int ParticleEditor::blendGLenumToIndex(const GLenum e)
             CCASSERT(false, "unimplemented blendfunc");
             return 0;
     }
+}
+
+void ParticleEditor::loadSprites()
+{
+    int my_image_width = 0;
+    int my_image_height = 0;
+    GLuint my_image_texture = 0;
+    bool ret = LoadTextureFromFile("res/sprites/money.png", &my_image_texture, &my_image_width, &my_image_height);
+    IM_ASSERT(ret);
+
+    imageTextureData.push_back(my_image_texture);
 }
