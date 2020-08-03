@@ -91,6 +91,11 @@ void ParticleEditor::draw()
         // - stop
         // - pause/resume
         // - reset
+        if(ImGui::Button("Export", ImVec2{100,20}))
+        {
+            serialize(systemData[currentIdx], "/Users/mehmeteminkacmaz/Desktop/");
+        }
+
         if(ImGui::Button("Reset", ImVec2{100,20}))
         {
             resetCurrentParticleSystem();
@@ -476,7 +481,11 @@ void ParticleEditor::serialize(const ParticleSystemData& data, const std::string
     std::free(encoded);
 
     if(!cocos2d::FileUtils::getInstance()->writeToFile(dict, path)) {
-        // todo error writing
+        CCLOG("WRONG");
+    }
+    else
+    {
+        CCLOG("SUCCESS");
     }
 }
 
@@ -586,6 +595,7 @@ int ParticleEditor::blendGLenumToIndex(const GLenum e)
 
 void ParticleEditor::loadSprites()
 {
+    //todo replace dirent with cocos2d::CCFileUtils
     DIR *dir;
     struct dirent *ent;
 
@@ -603,7 +613,7 @@ void ParticleEditor::loadSprites()
                 auto* img = new cocos2d::Image();
                 if(img->initWithImageFile(path))
                 {
-                    auto* tex = cocos2d::Director::getInstance()->getTextureCache()->addImage(img, path);
+                    cocos2d::Director::getInstance()->getTextureCache()->addImage(img, path);
                     imageCache.emplace(path, img);
 
                 }
