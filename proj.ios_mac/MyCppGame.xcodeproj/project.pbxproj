@@ -57,38 +57,20 @@
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
 		D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B0611A1803AB670077942B /* CoreMotion.framework */; };
 		E3C9203E42FFA487EB03619D /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C928E2557AD12AFE0EC31D /* imgui.cpp */; };
-		E3C9203E9A4D75DC1E0A6438 /* Flower.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C925B406CF90A9ACF86651 /* Flower.plist */; };
-		E3C920AF9DE19CE29F5DB07C /* debian.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C922B56CADC38BAD0A2E1C /* debian.plist */; };
 		E3C920CD89CDCDC418E89124 /* imgui_impl_cocos2dx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92D8518F4C65744DC0032 /* imgui_impl_cocos2dx.cpp */; };
-		E3C92165D4C90F68D5F1C3CD /* Flower.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C925B406CF90A9ACF86651 /* Flower.plist */; };
-		E3C922461BEAC018BC5A8F76 /* BoilingFoam.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C92222DFA0F58EFE1563F8 /* BoilingFoam.plist */; };
-		E3C92293319634E2441C0E26 /* debian.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C922B56CADC38BAD0A2E1C /* debian.plist */; };
 		E3C922FC3C48BB0A056842A1 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92E32B0F91970917A5466 /* imgui_widgets.cpp */; };
-		E3C923CB84220096378AD7A1 /* BoilingFoam.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C92222DFA0F58EFE1563F8 /* BoilingFoam.plist */; };
-		E3C924083361C5B584C939B1 /* BurstPipe.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C926EE0CE3CFE2940C53B2 /* BurstPipe.plist */; };
 		E3C9242F867D6EE95CE19D36 /* CCImGuiLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92BEF0169ED91F432EE50 /* CCImGuiLayer.cpp */; };
-		E3C9244CCB0A84E0DE24FF08 /* ExplodingRing.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C92EAA3D257F7728AFC9F6 /* ExplodingRing.plist */; };
 		E3C924593F4163DA3E4E1EA1 /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92956958D73A09F1779A7 /* imgui_draw.cpp */; };
 		E3C9251C27A5C51F3723521B /* imgui_impl_cocos2dx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92D8518F4C65744DC0032 /* imgui_impl_cocos2dx.cpp */; };
 		E3C9259872D0850A5DADE8FB /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C928E2557AD12AFE0EC31D /* imgui.cpp */; };
 		E3C925A155E3A352EC555B34 /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92E32B0F91970917A5466 /* imgui_widgets.cpp */; };
-		E3C927F390ABA8B7F234594B /* LavaFlow.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C9232854401A9FB66C3AB3 /* LavaFlow.plist */; };
 		E3C9283C48561FA7BCE09392 /* CCIMGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92CE557BB1B2BC2BF9AAB /* CCIMGUI.cpp */; };
-		E3C92993FAEE7F17CDFF1E27 /* Galaxy.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C924443B17FA736AE1057D /* Galaxy.plist */; };
-		E3C92B32763D7B2765B9EE4B /* Comet.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C928F69B9C46F871286242 /* Comet.plist */; };
-		E3C92B3A85EB327F03A1092F /* Comet.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C928F69B9C46F871286242 /* Comet.plist */; };
-		E3C92B7526F9A5705763BD4D /* ExplodingRing.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C92EAA3D257F7728AFC9F6 /* ExplodingRing.plist */; };
 		E3C92C269D8903D5A4E72AAB /* ParticleEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92609F5487923EFEB772B /* ParticleEditor.cpp */; };
-		E3C92D0920D2313123EACB62 /* ButterFly.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C928108A745CC7156D84A0 /* ButterFly.plist */; };
 		E3C92D936B6AF9F3AD0C8FC1 /* ParticleEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92609F5487923EFEB772B /* ParticleEditor.cpp */; };
 		E3C92DB9EEE11A304734219C /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C9261571C667ADD29BEC0D /* imgui_demo.cpp */; };
-		E3C92DC97FC2B44B52549964 /* BurstPipe.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C926EE0CE3CFE2940C53B2 /* BurstPipe.plist */; };
 		E3C92E44CFB53CED476D65ED /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C9261571C667ADD29BEC0D /* imgui_demo.cpp */; };
-		E3C92F1980143B481135B07B /* Galaxy.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C924443B17FA736AE1057D /* Galaxy.plist */; };
 		E3C92F24D37776430EBA082E /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92956958D73A09F1779A7 /* imgui_draw.cpp */; };
-		E3C92F6B64EBF674C95BC5F2 /* ButterFly.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C928108A745CC7156D84A0 /* ButterFly.plist */; };
 		E3C92FAB99A85C7CA195A883 /* CCImGuiLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92BEF0169ED91F432EE50 /* CCImGuiLayer.cpp */; };
-		E3C92FDAE25232F917BE3DEF /* LavaFlow.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C9232854401A9FB66C3AB3 /* LavaFlow.plist */; };
 		E3C92FE71C12094013662FAB /* CCIMGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E3C92CE557BB1B2BC2BF9AAB /* CCIMGUI.cpp */; };
 		ED545A7C1B68A1F400C3958E /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED545A7B1B68A1F400C3958E /* libiconv.dylib */; };
 		ED545A7E1B68A1FA00C3958E /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED545A7D1B68A1FA00C3958E /* libiconv.dylib */; };
@@ -181,21 +163,13 @@
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D6B0611A1803AB670077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		E3C9207594B1CF00C05A1059 /* imgui_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui_internal.h; sourceTree = "<group>"; };
-		E3C92222DFA0F58EFE1563F8 /* BoilingFoam.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = BoilingFoam.plist; path = res/BoilingFoam.plist; sourceTree = "<group>"; };
 		E3C922A64687B2B462987923 /* imgui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui.h; sourceTree = "<group>"; };
-		E3C922B56CADC38BAD0A2E1C /* debian.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = debian.plist; path = res/debian.plist; sourceTree = "<group>"; };
-		E3C9232854401A9FB66C3AB3 /* LavaFlow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = LavaFlow.plist; path = res/LavaFlow.plist; sourceTree = "<group>"; };
-		E3C924443B17FA736AE1057D /* Galaxy.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = Galaxy.plist; path = res/Galaxy.plist; sourceTree = "<group>"; };
-		E3C925B406CF90A9ACF86651 /* Flower.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = Flower.plist; path = res/Flower.plist; sourceTree = "<group>"; };
 		E3C92609F5487923EFEB772B /* ParticleEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleEditor.cpp; sourceTree = "<group>"; };
 		E3C9261571C667ADD29BEC0D /* imgui_demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_demo.cpp; sourceTree = "<group>"; };
 		E3C926160BE4FD23EF17894E /* imstb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_truetype.h; sourceTree = "<group>"; };
-		E3C926EE0CE3CFE2940C53B2 /* BurstPipe.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = BurstPipe.plist; path = res/BurstPipe.plist; sourceTree = "<group>"; };
 		E3C927B9EE195D608F26F39D /* ParticleEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleEditor.h; sourceTree = "<group>"; };
 		E3C927FAC4AC20817833C5F4 /* CCIMGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCIMGUI.h; sourceTree = "<group>"; };
-		E3C928108A745CC7156D84A0 /* ButterFly.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = ButterFly.plist; path = res/ButterFly.plist; sourceTree = "<group>"; };
 		E3C928E2557AD12AFE0EC31D /* imgui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui.cpp; sourceTree = "<group>"; };
-		E3C928F69B9C46F871286242 /* Comet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = Comet.plist; path = res/Comet.plist; sourceTree = "<group>"; };
 		E3C92956958D73A09F1779A7 /* imgui_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_draw.cpp; sourceTree = "<group>"; };
 		E3C929ABB9566EB09FEF06D3 /* imconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imconfig.h; sourceTree = "<group>"; };
 		E3C92BEF0169ED91F432EE50 /* CCImGuiLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCImGuiLayer.cpp; sourceTree = "<group>"; };
@@ -203,9 +177,9 @@
 		E3C92CE557BB1B2BC2BF9AAB /* CCIMGUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCIMGUI.cpp; sourceTree = "<group>"; };
 		E3C92CEEB50B6A5179A5FFE8 /* imstb_textedit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_textedit.h; sourceTree = "<group>"; };
 		E3C92D8518F4C65744DC0032 /* imgui_impl_cocos2dx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_impl_cocos2dx.cpp; sourceTree = "<group>"; };
+		E3C92D8ED06D6C12CA219F36 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		E3C92E32B0F91970917A5466 /* imgui_widgets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_widgets.cpp; sourceTree = "<group>"; };
 		E3C92E73F92C96D17FCA4D09 /* CCImGuiLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImGuiLayer.h; sourceTree = "<group>"; };
-		E3C92EAA3D257F7728AFC9F6 /* ExplodingRing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = ExplodingRing.plist; path = res/ExplodingRing.plist; sourceTree = "<group>"; };
 		E3C92EEC9F216F87F104AA31 /* imgui_impl_cocos2dx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui_impl_cocos2dx.h; sourceTree = "<group>"; };
 		ED545A7B1B68A1F400C3958E /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libiconv.dylib; sourceTree = DEVELOPER_DIR; };
 		ED545A7D1B68A1FA00C3958E /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -346,15 +320,6 @@
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
 				46880B7719C43A67006E1F66 /* CloseSelected.png */,
 				46880B7A19C43A67006E1F66 /* HelloWorld.png */,
-				E3C92222DFA0F58EFE1563F8 /* BoilingFoam.plist */,
-				E3C926EE0CE3CFE2940C53B2 /* BurstPipe.plist */,
-				E3C928108A745CC7156D84A0 /* ButterFly.plist */,
-				E3C928F69B9C46F871286242 /* Comet.plist */,
-				E3C922B56CADC38BAD0A2E1C /* debian.plist */,
-				E3C92EAA3D257F7728AFC9F6 /* ExplodingRing.plist */,
-				E3C925B406CF90A9ACF86651 /* Flower.plist */,
-				E3C924443B17FA736AE1057D /* Galaxy.plist */,
-				E3C9232854401A9FB66C3AB3 /* LavaFlow.plist */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -376,6 +341,7 @@
 				E3C92EEC9F216F87F104AA31 /* imgui_impl_cocos2dx.h */,
 				E3C92609F5487923EFEB772B /* ParticleEditor.cpp */,
 				E3C927B9EE195D608F26F39D /* ParticleEditor.h */,
+				E3C92D8ED06D6C12CA219F36 /* stb_image.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -529,15 +495,6 @@
 				1AF87B891F6F781D007BE51C /* LaunchScreenBackground.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				1AF87B881F6F781D007BE51C /* LaunchScreen.storyboard in Resources */,
-				E3C923CB84220096378AD7A1 /* BoilingFoam.plist in Resources */,
-				E3C924083361C5B584C939B1 /* BurstPipe.plist in Resources */,
-				E3C92D0920D2313123EACB62 /* ButterFly.plist in Resources */,
-				E3C92B32763D7B2765B9EE4B /* Comet.plist in Resources */,
-				E3C920AF9DE19CE29F5DB07C /* debian.plist in Resources */,
-				E3C9244CCB0A84E0DE24FF08 /* ExplodingRing.plist in Resources */,
-				E3C9203E9A4D75DC1E0A6438 /* Flower.plist in Resources */,
-				E3C92F1980143B481135B07B /* Galaxy.plist in Resources */,
-				E3C927F390ABA8B7F234594B /* LavaFlow.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,15 +508,6 @@
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
-				E3C922461BEAC018BC5A8F76 /* BoilingFoam.plist in Resources */,
-				E3C92DC97FC2B44B52549964 /* BurstPipe.plist in Resources */,
-				E3C92F6B64EBF674C95BC5F2 /* ButterFly.plist in Resources */,
-				E3C92B3A85EB327F03A1092F /* Comet.plist in Resources */,
-				E3C92293319634E2441C0E26 /* debian.plist in Resources */,
-				E3C92B7526F9A5705763BD4D /* ExplodingRing.plist in Resources */,
-				E3C92165D4C90F68D5F1C3CD /* Flower.plist in Resources */,
-				E3C92993FAEE7F17CDFF1E27 /* Galaxy.plist in Resources */,
-				E3C92FDAE25232F917BE3DEF /* LavaFlow.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
