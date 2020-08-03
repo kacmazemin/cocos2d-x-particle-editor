@@ -3,7 +3,8 @@
 #include <array>
 #include <string>
 
-#include <imgui/imgui.h>
+#include "CCIMGUI.h"
+#include "CCImGuiLayer.h"
 #include <zlib/include/zlib.h>
 
 #include "2d/CCParticleSystem.h"
@@ -13,6 +14,22 @@
 #include "platform/CCImage.h"
 #include "renderer/CCTextureCache.h"
 
+namespace
+{
+    static constexpr std::array<const char*, 2> typeNames{"Gravity", "Radial"};
+
+    static constexpr std::array<const char*, 9> blendFuncNames {
+            "GL_ZERO",
+            "GL_ONE",
+            "GL_DST_COLOR",
+            "GL_ONE_MINUS_DST_COLOR",
+            "GL_SRC_ALPHA",
+            "GL_ONE_MINUS_SRC_ALPHA",
+            "GL_DST_ALPHA",
+            "GL_ONE_MINUS_DST_ALPHA",
+            "GL_SRC_ALPHA_SATURATE"
+    };
+}
 std::string compressToGzip(unsigned char* input, const size_t inputSize)
 {
     z_stream zs;
@@ -47,6 +64,7 @@ std::string compressToGzip(unsigned char* input, const size_t inputSize)
 }
 
 ParticleEditor::ParticleEditor(cocos2d::Node* parent)
+    : parent{parent}
 {
     CC_ASSERT(parent);
     addParticleSystem("Galaxy.plist");
@@ -62,6 +80,8 @@ void ParticleEditor::draw()
         // - stop
         // - pause/resume
         // - reset
+        ImGui::End();
+
     }
 
     if(ImGui::Begin("SystemData")) {
@@ -78,6 +98,11 @@ void ParticleEditor::addParticleSystem(const std::string& path)
 void ParticleEditor::addParticleSystem(cocos2d::ParticleSystem* ps)
 {
     CC_ASSERT(ps);
+    if(!ps->getParent())
+    {
+        parent->addChild(ps);
+    }
+    auto visibleSize = Director::getInstance()->getVisibleSize();
     ps->setPosition(cocos2d::Vec2::ZERO);
     systemData.push_back({ps, ps->getImage()});
     updatePropertiesFromSystem(systemData.back());
@@ -410,12 +435,12 @@ void ParticleEditor::serialize(const ParticleSystemData& data, const std::string
     dict.emplace("blendFuncSource", cocos2d::Value{blendIndexToGLenum(data.blendSrcIdx)});
     dict.emplace("blendFuncDestination", cocos2d::Value{blendIndexToGLenum(data.blendDstIdx)});
 
-    const auto compressed = compressToGzip(data.textureImage->getData(), data.textureImage->getDataLen());
+    const auto compressed = compressToGzip(data.textureImage->getData(), static_cast<const size_t>(data.textureImage->getDataLen()));
 
     char* encoded = nullptr;
-    const auto encodedLen = cocos2d::base64Encode(reinterpret_cast<const unsigned char*>(compressed.data()), compressed.length(), &encoded);
+    const auto encodedLen = cocos2d::base64Encode(reinterpret_cast<const unsigned char*>(compressed.data()), static_cast<unsigned int>(compressed.length()), &encoded);
 
-    dict.emplace("textureImageData", cocos2d::Value{std::string{encoded, encodedLen}});
+    dict.emplace("textureImageData", cocos2d::Value{std::string{encoded, (unsigned long) encodedLen}});
     std::free(encoded);
 
     if(!cocos2d::FileUtils::getInstance()->writeToFile(dict, path)) {
@@ -429,7 +454,7 @@ void ParticleEditor::updatePropertiesFromSystem(ParticleSystemData& data)
 
     // emitter props
 	data.emitDuration = ps->getDuration();
-    data.emitPositionVariance = {ps->getPosVar().x, ps->getPosVar().y};
+    data.emitPositionVariance = {(int)ps->getPosVar().x, (int)ps->getPosVar().y};
 	data.maxParticles = ps->getTotalParticles();
 	data.emitAngle = ps->getAngle();
 	data.emitAngleVar = ps->getAngleVar();

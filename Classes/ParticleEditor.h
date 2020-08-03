@@ -73,22 +73,15 @@ private:
         int blendDstIdx = 0;
 
 		// todo texture props
+
+		ParticleSystemData(cocos2d::ParticleSystem* ps, cocos2d::Image* img)
+		{
+			system = ps;
+			textureImage = img;
+		}
 	};
-	
-    static constexpr std::array<const char*, 2> typeNames{"Gravity", "Radial"};
 
-    static constexpr std::array<const char*, 9> blendFuncNames {
-        "GL_ZERO",
-        "GL_ONE",
-        "GL_DST_COLOR",
-        "GL_ONE_MINUS_DST_COLOR",
-        "GL_SRC_ALPHA",
-        "GL_ONE_MINUS_SRC_ALPHA",
-        "GL_DST_ALPHA",
-        "GL_ONE_MINUS_DST_ALPHA",
-        "GL_SRC_ALPHA_SATURATE"
-    };
-
+    cocos2d::Node* parent;
 	std::unordered_map<std::string, cocos2d::Image*> imageCache;
 	std::vector<ParticleSystemData> systemData;
 	size_t currentIdx = 0;

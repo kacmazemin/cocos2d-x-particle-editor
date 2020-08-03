@@ -30,6 +30,8 @@
 #include "CCIMGUI.h"
 #include "cocos/2d/CCParticleSystemQuad.h"
 
+#include "ParticleEditor.h"
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -144,6 +146,7 @@ bool HelloWorld::init()
         this->addChild(sprite, 0);
     }
 
+/*
     std::string layerName = "ImGUILayer";
     auto order = INT_MAX;
     auto layer = ImGuiLayer::create();
@@ -464,6 +467,21 @@ bool HelloWorld::init()
         }
 
     }, "hello");
+*/
+
+    std::string layerName = "ImGUILayer";
+    auto order = INT_MAX;
+    auto layer = ImGuiLayer::create();
+    addChild(layer, order, layerName);
+
+    ParticleEditor* editor = new ParticleEditor(this);
+
+    CCIMGUI::getInstance()->addCallback([=](){
+
+        editor->draw();
+
+    },"hello");
+
 
     return true;
 }
