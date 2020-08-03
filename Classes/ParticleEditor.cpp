@@ -84,9 +84,11 @@ void ParticleEditor::draw()
         // - stop
         // - pause/resume
         // - reset
-//        if(ImGui::Button("Reset", ))
+        if(ImGui::Button("Reset", ImVec2{100,20}))
+        {
+            resetCurrentParticleSystem();
+        }
         ImGui::End();
-
     }
 
     if(ImGui::Begin("SystemData")) {
@@ -111,6 +113,11 @@ void ParticleEditor::addParticleSystem(cocos2d::ParticleSystem* ps)
     ps->setPosition(visibleOrigin.x + visibleSize.width * .5f, visibleOrigin.y + visibleSize.height * .5f);
     systemData.push_back({ps, ps->getImage()});
     updatePropertiesFromSystem(systemData.back());
+}
+
+void ParticleEditor::resetCurrentParticleSystem()
+{
+    systemData[currentIdx].system->resetSystem();
 }
 
 void ParticleEditor::drawParticleSystemData(ParticleSystemData& data)

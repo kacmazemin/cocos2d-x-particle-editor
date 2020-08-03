@@ -91,6 +91,7 @@ private:
 
 	void addParticleSystem(const std::string& path);
 	void addParticleSystem(cocos2d::ParticleSystem* ps);
+	void resetCurrentParticleSystem();
 	static void drawParticleSystemData(ParticleSystemData& data);
 
 	void changeTexture(ParticleSystemData& data, const std::string& texturePath);
